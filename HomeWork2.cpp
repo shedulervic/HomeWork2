@@ -24,7 +24,7 @@ int main()
         {o, o, x},
         {x, x, o}
     };
-    TicTacToe matrix[3][3] ={
+    TicTacToe tmatrix[3][3] ={
     {x, o, e},
         {o, o, x},
         {x, x, o}
