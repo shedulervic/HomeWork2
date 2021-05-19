@@ -1,93 +1,57 @@
-#include <cstring>
+﻿#include <cstring>
 #include <iostream>
+#include "Header.h"
 
 int main()
 {
-    // Создать и инициализировать переменные пройденных типов данных
-    char someLetter;
-    someLetter = 'b';
-    float f;
-    f = 3.155;
-    bool b = false;
-    int someInt = 34;
+  // Написать программу, вычисляющую выражение a * (b + (c / d)) и выводящую результат с плавающей точкой, где a, b, c, d – целочисленные константы;
 
-    // Создать перечисление с возможными вариантами символов для игры в крестики-нолики
+    const int a = 4;
+    const int b = 3;
+    const int c = 6;
+    const int d = 7;
 
-    enum ticTacToe {x, o, e};
-    using TicTacToe = enum ticTacToe;
-    TicTacToe currentCell = o;
+    double da = (double)a;
+    double db = (double)b;
+    double dc = (double)c;
+    double dd = (double)d;
+    double r = dc / dd;
+     r = da * (r + db);
 
-    // Создать массив, способный содержать значения такого перечисления и инициализировать его.
+    std::cout << r << std::endl;
 
-    char matrix[3][3] = { 
-        {x, o, e},
-        {o, o, x},
-        {x, x, o}
-    };
-    TicTacToe tmatrix[3][3] ={
-    {x, o, e},
-        {o, o, x},
-        {x, x, o}
-    };
+    // Дано целое число, выведите на экран разницу между этим числом и числом 21. Если же заданное число больше, чем 21, 
+    // необходимо вывести удвоенную разницу между этим числом и 21. При выполнении задания следует использовать тернарный оператор.
 
-    // Создать структуру данных «Поле для игры в крестики-нолики» и снабдить его всеми необходимыми свойствами
-        
-    struct sTicTacToe
-    {
-        char mTicTacToe[3][3] = {
-            {x, o, e},
-        {o, o, x},
-        {x, x, o}
-        };
-        int scoreGemerb[2];
-        char GamerTTT[2] = {'b', 'g' };
-    };
+    int var = 34;
+    int dif = 21 - var;
+    int r2 = (dif <= 0) ? (dif * 2) : dif;
+    
+    std::cout << r2 << std::endl;
 
-    //Создать объединение и структуру с битовыми флагами указывающими какого типа значение в данный момент содержится в объединении
-
-    union MyUnion
-    {
-        unsigned int a : 1;
-        double fl;
-        char b;
-    }; 
-    union  MyUnion someUnion;
-    someUnion.b = 'A';
-    someUnion.a = 1;
-
-    struct MyStruct
-    {
-        char nameApprentice[15];
-        unsigned int homeWorkCompleted : 1;
-    };
-    using Apprentice = MyStruct;
-    Apprentice me;
-    strcpy_s(me.nameApprentice, "Victor");
-    me.homeWorkCompleted = 1;
+    //аписать программу, вычисляющую выражение из первого задания, а переменные для неё инициализировать в другом файле
 
 
-    std::cout << "Create and initialise variable" << std::endl;
-    std::cout << "char" << std::endl;
-    std::cout << someLetter << std::endl;
-    std::cout << "float" << std::endl;
-    std::cout << f << std::endl;
-    std::cout << "bool" << std::endl;
-    std::cout << b << std::endl;
-    std::cout << "int" << std::endl;
-    std::cout << someInt << std::endl;
-    std::cout << "\n"<< std::endl;
-    std::cout << "Create enum TicTacToe" << std::endl;
-    std::cout << currentCell << std::endl;
-    std::cout << "Create union " << std::endl;
-    std::cout << "char is true" << " ";
-    std::cout << someUnion.a << std::endl;
-    std::cout << "Create struct" << std::endl;
-    std::cout << me.nameApprentice << std::endl;
-    std::cout << "Home work completed" << " ";
-    std::cout << me.homeWorkCompleted << std::endl;
+    double r3 = exc / exd;
+    r3 = exa * (r3 + exb);
+
+    std::cout << r3 << std::endl;
+
+    //Описать трёхмерный целочисленный массив, размером 3х3х3, указатель на значения внутри массива
+    // и при помощи операции разыменования вывести на экран значение центральной ячейки получившегося куба [1][1][1]
+
+    int matrix[3][3][3] = {
+        { {2, 7, 9}, {4, 0, 1}, {2, 6, 4}},
+        { {4, 5, 6}, {2, 6, 8}, {4, 6, 8}},
+        { {1, 7, 3}, {6, 7, 2}, {3, 5, 6}}
 
 
+    }, *ptr ;
+    ptr = &matrix[1][1][1];
 
+    std::cout << & matrix[1][1][1] << std::endl;
+    std::cout << * (matrix + 13)<< std::endl;
+    printf("%d\n", *ptr);
 
 }
 
