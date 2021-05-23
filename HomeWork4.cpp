@@ -112,7 +112,7 @@ int main()
             std::cin >> year;
             if (year % 100 == 0 && year % 400 != 0)
             {
-                std::cout << "not leap year:" << std::endl;
+                std::cout << "not leap year" << std::endl;
             }
             else if (year % 4 == 0)
             {
