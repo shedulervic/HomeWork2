@@ -36,7 +36,7 @@ int main()
     int n;
     n = 6;
     bool prime = true;
-    for (int i = 2; i < n; i++)
+    for (int i = 2; i <= n; i++)
     {
         if (n % i == 0)
         {
