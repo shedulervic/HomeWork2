@@ -108,7 +108,7 @@ int main()
     int year = 1; 
         while (year !=0)
         {
-            std::cout << "enter year number:" << std::endl;
+            std::cout << "enter year number, or enter 0 for exit" << std::endl;
             std::cin >> year;
             if (year % 100 == 0 && year % 400 != 0)
             {
