@@ -56,7 +56,7 @@ int main()
     // либо их сумма равна десяти.
     const int a2 = 10;
     const int b2 = 10;
-    const int c2 = a2 + b2;
+    int c2 = a2 + b2;
     if (c2 == 10)
     {
         std::cout << "true" << std::endl;
