@@ -15,5 +15,6 @@ int main()
     int arr2[SZ2]{};
     InitMassiveElements(arr2, SZ2);
     
+    
 }
 

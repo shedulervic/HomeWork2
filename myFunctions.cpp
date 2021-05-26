@@ -21,3 +21,6 @@ void InitMassiveElements(int a[], int SZ)
         std::cout << a[i] << " ";
     }
 }
+
+
+
