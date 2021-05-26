@@ -14,7 +14,10 @@ int main()
     const int SZ2 = 8;
     int arr2[SZ2]{};
     InitMassiveElements(arr2, SZ2);
-    
+    for (int i = 0; i < SZ2; i++)
+    {
+        std::cout << arr2[i] << " ";
+    }
     
 }
 
