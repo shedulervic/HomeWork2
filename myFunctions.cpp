@@ -10,3 +10,14 @@ void ReverseMassiveElement(int a[], int num)
         std::cout << "new: " << a[i] << std::endl;
     }
 }
+
+void InitMassiveElements(int a[], int SZ)
+{
+    int n = 0;
+    for (int i = 0; i <= (SZ - 1); i++)
+    {
+        n = n + 3;
+        a[i] = n - 2;
+        std::cout << a[i] << " ";
+    }
+}
