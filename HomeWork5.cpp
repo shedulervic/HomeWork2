@@ -10,6 +10,10 @@ int main()
     int arr[SZ]{ 1, 0, 0, 1, 1, 0, 1 };
     ReverseMassiveElement(arr, SZ);
     
+    // Задать пустой целочисленный массив размером 8. Написать функцию, которая с помощью цикла заполнит его значениями 1 4 7 10 13 16 19 22
+    const int SZ2 = 8;
+    int arr2[SZ2]{};
+    InitMassiveElements(arr2, SZ2);
     
 }
 
