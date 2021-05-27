@@ -22,3 +22,29 @@ void myFunc::InitMassiveElements(int* a, int SZ)
         a[i] = n - 2;
     }
 }
+
+void myFunc::CheckMassiveSum(int* a, int SZ3)
+{
+    bool answ = false;
+    for (int i = 0; i < SZ3; i++)
+    {
+        int sumRight = 0;
+        int sumLeft = 0;
+        for (int j = i+1; j < SZ3; j++)
+        {
+            sumRight += a[j];
+        }
+        for (int j = 0; j <= i; j++)
+        {
+            sumLeft += a[j];
+        }
+        if (sumLeft == sumRight)
+        {
+            answ = true;
+            break;
+        }
+    }
+    std::cout << (answ ? "true" : "false") << std::endl;
+   
+    
+}
