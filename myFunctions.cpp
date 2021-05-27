@@ -1,7 +1,7 @@
 #include "myFunctions.h"
 #include <iostream>
 
-void ReverseMassiveElement(int a[], int num)
+void myFunc::ReverseMassiveElement(int a[], int num)
 {
     for (int i = 0; i < num; i++)
     {
@@ -11,7 +11,9 @@ void ReverseMassiveElement(int a[], int num)
     }
 }
 
-void InitMassiveElements(int* a, int SZ)
+
+
+void myFunc::InitMassiveElements(int* a, int SZ)
 {
     int n = 0;
     for (int i = 0; i <= (SZ - 1); i++)
@@ -20,10 +22,3 @@ void InitMassiveElements(int* a, int SZ)
         a[i] = n - 2;
     }
 }
-
-
-
-
-
-
-
