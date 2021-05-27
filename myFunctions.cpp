@@ -58,6 +58,10 @@ void myFunc::CicleShift(int* a, int ln)
     if (ln < 0)
     {
         ln = -ln;
+        if (ln > SZ)
+        {
+            ln = ln % SZ;
+        }
         for (int i = 0; i < SZ; i++)
         {
             b[i] = a[i];
@@ -66,7 +70,7 @@ void myFunc::CicleShift(int* a, int ln)
         {
             if (i < ln)
             {
-                int t = i + ln +1;
+                int t = i + ln + 1;
                 a[t] = b[i];
             }
             else
@@ -83,6 +87,10 @@ void myFunc::CicleShift(int* a, int ln)
     }
     else
     {
+        if (ln > SZ)
+        {
+            ln = ln % SZ;
+        }
         for (int i = 0; i < SZ; i++)
         {
             b[i] = a[i];
@@ -105,9 +113,10 @@ void myFunc::CicleShift(int* a, int ln)
             std::cout << a[i] << " ";
         }
     }
-    
+
     std::cout << std::endl;
 }
+
 
 void myFunc::ReverseMassiveElementVar(int a[], int SZ5, ...)
 {
