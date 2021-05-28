@@ -117,20 +117,22 @@ void myFunc::CicleShift(int* a, int ln)
     std::cout << std::endl;
 }
 
-
-void myFunc::ReverseMassiveElementVar(int a[], int SZ5, ...)
+void myFunc::ReverseMassiveElementVar(int size, ...)
 {
-    float result = 0;
+    int result = 0.0;
     va_list lst;
-    va_start(lst, SZ5);
-    for (int i = 0; i < SZ5; i++)
+    va_start(lst, size);
+    for (int i = 0; i < size; i++)
     {
         result += va_arg(lst, int);
+        /*for (int j = 0; j < result; j++)
+        {
+            std::cout << "old: " << a[j] << " ";
+            a[j] = 1 - a[j];
+            std::cout << "new: " << a[j] << std::endl;
+        }*/
+        std::cout << (result = -result) << std::endl;
     }
-    for (int i = 0; i < SZ5; i++)
-    {
-        std::cout << "old: " << a[i] << " ";
-        a[i] = 1 - a[i];
-        std::cout << "new: " << a[i] << std::endl;
-    }
+    va_end(lst);
+   
 }
