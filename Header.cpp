@@ -13,13 +13,10 @@ void fileFunctions::CreateFile(string FileName)
 
 void fileFunctions::WriteFile(std::string FileName)
 {
-	std::string line;
 	std::ifstream in("news.txt");
 	std::ofstream out(FileName, std::ios::app);
 	if (in.is_open())
 	{
-		out << in.rdbuf();
+		out << in.rdbuf(); //про rbuf нарыл в инете но пока не разобрался что он на самом деле такое
 	}
-	
-	
 }
