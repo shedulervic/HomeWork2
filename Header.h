@@ -1,4 +1,8 @@
-const double exa = 4;
-const double exb = 3;
-const double exc = 6;
-const double exd = 7;
+#pragma once
+#include <string>
+
+namespace fileFunctions
+{
+	void CreateFile(std::string FileName);
+	void WriteFile(std::string FileName);
+}
