@@ -19,4 +19,5 @@ void fileFunctions::WriteFile(std::string FileName)
 	{
 		out << in.rdbuf(); //про rbuf нарыл в инете но пока не разобрался что он на самом деле такое
 	}
+	in.close();
 }
