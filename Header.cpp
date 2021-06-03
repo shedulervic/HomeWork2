@@ -26,25 +26,35 @@ void fileFunctions::GluingFile(std::string FileName1, std::string FileName2)
 {
 	namespace fs = std::filesystem;
 	 // получим размер файлов
-	std::ifstream one(FileName1);
+	std::ifstream one(FileName1, std::ios::binary);
 	int sizeone = fs::file_size(fs::current_path() / FileName1);
-	std::ifstream two(FileName2);
+	std::ifstream two(FileName2, std::ios::binary);
 	int sizetwo = fs::file_size(fs::current_path() / FileName2);
 	// выделяем память
-	char *textOne = (char*) calloc(sizeone, sizeof(int));
+	int sizegluing = sizeone + sizetwo;
+	char* textGluing = (char*)calloc(sizegluing, sizeof(int));
+	char* textOne = (char*)calloc(sizeone, sizeof(int));
 	char* textTwo = (char*)calloc(sizetwo, sizeof(int));
-	std::ofstream textGluing;
-    // буфферизация
-	while (!one.eof())
+	
+	if (one)
 	{
-		one.getline(textOne, sizeone);
+		one.seekg(0, one.end);
+		int lenght = one.tellg();
+		one.seekg(0, one.beg);
+		one.read(textOne, sizeone);
+		one.close();
 	}
-	while (!two.eof())
+	if (two)
 	{
-		two.getline(textTwo, sizetwo);
+		two.seekg(0, two.end);
+		int lenght = two.tellg();
+		two.seekg(0, two.beg);
+		two.read(textTwo, sizetwo);
+		two.close();
 	}
-	//не понял почему при использовании eof попадает только первое предложение
+	textGluing = strcat(textOne, textTwo);
 	//записываем в файл
 	std::ofstream gluingFile("Gluing.txt", std::ios::app);
-	gluingFile << textOne << textTwo;
+	gluingFile << textGluing;
+	gluingFile.close();
 }
