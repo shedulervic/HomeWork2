@@ -18,7 +18,7 @@ void fileFunctions::WriteFile(std::string FileName)
 	std::ofstream out(FileName, std::ios::app);
 	if (in.is_open())
 	{
-		out << in.rdbuf(); //Ã¯Ã°Ã® rbuf Ã­Ã Ã°Ã»Ã« Ã¢ Ã¨Ã­Ã¥Ã²Ã¥ docs.microsoft.com/ru-ru/previous-versions/k7hz8258(v=vs.140)
+		out << in.rdbuf(); //ïðî rbuf íàðûë â èíåòå docs.microsoft.com/ru-ru/previous-versions/k7hz8258(v=vs.140)
 	}
 	in.close();
 }
@@ -26,43 +26,40 @@ void fileFunctions::WriteFile(std::string FileName)
 void fileFunctions::GluingFile(std::string FileName1, std::string FileName2)
 {
 	namespace fs = std::filesystem;
-	 // Ã¯Ã®Ã«Ã³Ã·Ã¨Ã¬ Ã°Ã Ã§Ã¬Ã¥Ã° Ã´Ã Ã©Ã«Ã®Ã¢
+	 // ïîëó÷èì ðàçìåð ôàéëîâ
 	std::ifstream one(FileName1, std::ios::binary);
 	int sizeone = fs::file_size(fs::current_path() / FileName1);
 	std::ifstream two(FileName2, std::ios::binary);
 	int sizetwo = fs::file_size(fs::current_path() / FileName2);
-	// Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã¯Ã Ã¬Ã¿Ã²Ã¼
+	// âûäåëÿåì ïàìÿòü
+	char* textTwo = (char*)calloc(sizetwo + 1, sizeof(char));
 	int sizegluing = sizeone + sizetwo;
-	char* textGluing = (char*)calloc(sizegluing, sizeof(int));
-	char* textOne = (char*)calloc(sizeone, sizeof(int));
-	char* textTwo = (char*)calloc(sizetwo, sizeof(int));
-	//Ã²Ã¥ÃªÃ±Ã² Ã¢ Ã¯Ã Ã¬Ã¿Ã²Ã¼
-	if (one)
-	{
-		one.seekg(0, one.end);
-		int lenght = one.tellg();
+	char* textOne = (char*)calloc(sizegluing+1, sizeof(char));
+	
+	
+	//òåêñò â ïàìÿòü
+	
+		
 		one.seekg(0, one.beg);
 		one.read(textOne, sizeone);
 		one.close();
-	}
-	if (two)
-	{
-		two.seekg(0, two.end);
-		int lenght = two.tellg();
+	
+		
 		two.seekg(0, two.beg);
 		two.read(textTwo, sizetwo);
 		two.close();
-	}
-	textGluing = strcat(textOne, textTwo);
-	//Ã§Ã Ã¯Ã¨Ã±Ã»Ã¢Ã Ã¥Ã¬ Ã¢ Ã´Ã Ã©Ã«
+	
+	strcat(textOne, textTwo);
+	//çàïèñûâàåì â ôàéë
 	std::ofstream gluingFile("Gluing.txt", std::ios::app);
-	gluingFile << textGluing;
+	gluingFile << textOne;
 	gluingFile.close();
+	free(textOne);
+	free(textTwo);
 }
 
 void fileFunctions::WordInFile(std::string FileName, std::string Word)
 {
-
 	std::ifstream file(FileName, std::ios::app);
 	string line;
 	while (getline(file, line))
@@ -70,12 +67,8 @@ void fileFunctions::WordInFile(std::string FileName, std::string Word)
 		if (line.find(Word) != string::npos)
 		{
 			std::cout << "this word is here";
-
-		}
-		else
-		{
-			std::cout << "this word is missing here";
-			
+			return;
 		}
 	}
+	std::cout << "this word is missing here";
 }
