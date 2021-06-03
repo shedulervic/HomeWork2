@@ -2,6 +2,7 @@
 #include <fstream>
 #include <filesystem>
 #include <iostream>
+#include <string>
 
 
 using namespace std;
@@ -35,7 +36,7 @@ void fileFunctions::GluingFile(std::string FileName1, std::string FileName2)
 	char* textGluing = (char*)calloc(sizegluing, sizeof(int));
 	char* textOne = (char*)calloc(sizeone, sizeof(int));
 	char* textTwo = (char*)calloc(sizetwo, sizeof(int));
-	
+	//текст в память
 	if (one)
 	{
 		one.seekg(0, one.end);
@@ -57,4 +58,40 @@ void fileFunctions::GluingFile(std::string FileName1, std::string FileName2)
 	std::ofstream gluingFile("Gluing.txt", std::ios::app);
 	gluingFile << textGluing;
 	gluingFile.close();
+}
+
+void fileFunctions::WordInFile(std::string FileName, std::string Word)
+{
+	/*std::ifstream file(FileName, std::ios::in);
+	char c = '\0';
+	std::string buf;
+	while (file.peek() >= 0 && !file.eof())
+	{
+		file >> c; buf += c;
+	}
+	file.close();
+	std::size_t pos = 0;
+	if ((pos = buf.find(Word, 0)) != std::string::npos)
+	{
+		std::cout << "this word is here";
+	}
+	else
+	{
+		std::cout << "this file is missing here";
+	}*/
+	std::ifstream file(FileName, std::ios::app);
+	string line;
+	while (getline(file, line))
+	{
+		if (line.find(Word) != string::npos)
+		{
+			std::cout << "this word is here";
+			
+		}
+		else
+		{
+			std::cout << "this word is missing here";
+			
+		}
+	}
 }
