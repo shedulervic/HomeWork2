@@ -18,7 +18,7 @@ void fileFunctions::WriteFile(std::string FileName)
 	std::ofstream out(FileName, std::ios::app);
 	if (in.is_open())
 	{
-		out << in.rdbuf(); //ïðî rbuf íàðûë â èíåòå docs.microsoft.com/ru-ru/previous-versions/k7hz8258(v=vs.140)
+		out << in.rdbuf(); //Ã¯Ã°Ã® rbuf Ã­Ã Ã°Ã»Ã« Ã¢ Ã¨Ã­Ã¥Ã²Ã¥ docs.microsoft.com/ru-ru/previous-versions/k7hz8258(v=vs.140)
 	}
 	in.close();
 }
@@ -26,17 +26,17 @@ void fileFunctions::WriteFile(std::string FileName)
 void fileFunctions::GluingFile(std::string FileName1, std::string FileName2)
 {
 	namespace fs = std::filesystem;
-	 // ïîëó÷èì ðàçìåð ôàéëîâ
+	 // Ã¯Ã®Ã«Ã³Ã·Ã¨Ã¬ Ã°Ã Ã§Ã¬Ã¥Ã° Ã´Ã Ã©Ã«Ã®Ã¢
 	std::ifstream one(FileName1, std::ios::binary);
 	int sizeone = fs::file_size(fs::current_path() / FileName1);
 	std::ifstream two(FileName2, std::ios::binary);
 	int sizetwo = fs::file_size(fs::current_path() / FileName2);
-	// âûäåëÿåì ïàìÿòü
+	// Ã¢Ã»Ã¤Ã¥Ã«Ã¿Ã¥Ã¬ Ã¯Ã Ã¬Ã¿Ã²Ã¼
 	int sizegluing = sizeone + sizetwo;
 	char* textGluing = (char*)calloc(sizegluing, sizeof(int));
 	char* textOne = (char*)calloc(sizeone, sizeof(int));
 	char* textTwo = (char*)calloc(sizetwo, sizeof(int));
-	//òåêñò â ïàìÿòü
+	//Ã²Ã¥ÃªÃ±Ã² Ã¢ Ã¯Ã Ã¬Ã¿Ã²Ã¼
 	if (one)
 	{
 		one.seekg(0, one.end);
@@ -54,7 +54,7 @@ void fileFunctions::GluingFile(std::string FileName1, std::string FileName2)
 		two.close();
 	}
 	textGluing = strcat(textOne, textTwo);
-	//çàïèñûâàåì â ôàéë
+	//Ã§Ã Ã¯Ã¨Ã±Ã»Ã¢Ã Ã¥Ã¬ Ã¢ Ã´Ã Ã©Ã«
 	std::ofstream gluingFile("Gluing.txt", std::ios::app);
 	gluingFile << textGluing;
 	gluingFile.close();
@@ -62,23 +62,7 @@ void fileFunctions::GluingFile(std::string FileName1, std::string FileName2)
 
 void fileFunctions::WordInFile(std::string FileName, std::string Word)
 {
-	/*std::ifstream file(FileName, std::ios::in);
-	char c = '\0';
-	std::string buf;
-	while (file.peek() >= 0 && !file.eof())
-	{
-		file >> c; buf += c;
-	}
-	file.close();
-	std::size_t pos = 0;
-	if ((pos = buf.find(Word, 0)) != std::string::npos)
-	{
-		std::cout << "this word is here";
-	}
-	else
-	{
-		std::cout << "this file is missing here";
-	}*/
+
 	std::ifstream file(FileName, std::ios::app);
 	string line;
 	while (getline(file, line))
@@ -86,7 +70,7 @@ void fileFunctions::WordInFile(std::string FileName, std::string Word)
 		if (line.find(Word) != string::npos)
 		{
 			std::cout << "this word is here";
-			
+
 		}
 		else
 		{
