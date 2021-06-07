@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 using namespace std;
 
-#define DIAPAZON(x,y)  (((x) < (y)) && ((x) > (0))? true : false)
+#define DIAPAZON(x,y)  (((x) < (y)) && ((x) >= (0))? true : false)
 #define POINTER(x) (std::cout << (*x) << std::endl)
 #define AMOUNT(a) (std::cout << (sizeof(a)/ sizeof(*a)) << std::endl)
 int main()
