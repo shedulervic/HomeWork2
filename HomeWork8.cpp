@@ -36,6 +36,7 @@ GameState checkWin(const Field&, PLAYER);
 bool aiTryWin(Field&);
 bool aiTryBlock(Field&);
 void aiMove(Field&);
+bool checkLanes(const Field& field, PLAYER sym);
 bool gameCheck(const Field& f, PLAYER dot, const std::string& winString) {
     printField(f);
     GameState result = checkWin(f, dot);
@@ -73,6 +74,8 @@ int main(int argc, const char** argv) { // 1TBS
 
     return 0;
 }
+
+
 
 void initField(Field& field) {
     field.szX = 3;
@@ -128,6 +131,11 @@ void playerMove(Field& field) {
 }
 //!a||!b == !(a&&b)
 
+
+
+
+
+
 GameState checkWin(const Field& field, PLAYER c) {
     bool hasEmpty = false;
     //todo optimize this checks))
@@ -137,15 +145,36 @@ GameState checkWin(const Field& field, PLAYER c) {
                 hasEmpty = true;
                 continue;
             }
-            if (getValue(field.map, y, x) != c) continue;
-            if (checkLine(field, y, x, 1, 0, field.toWin)) return WIN;
+            if (checkLanes(field, c)) return WIN;
+           if (getValue(field.map, y, x) != c) continue;
+           /* if (checkLine(field, y, x, 1, 0, field.toWin)) return WIN;
             if (checkLine(field, y, x, 1, 1, field.toWin)) return WIN;
             if (checkLine(field, y, x, 0, 1, field.toWin)) return WIN;
-            if (checkLine(field, y, x, 1, -1, field.toWin)) return WIN;
+            if (checkLine(field, y, x, 1, -1, field.toWin)) return WIN;*/
         }
     }
     return (hasEmpty) ? NOTWIN : DRAW;
 }
+
+bool checkLanes(const Field& field, PLAYER sym)
+{
+    bool cols, rows;
+    for (int y = 0; y < field.szX; y++)
+    {
+        cols = true;
+        rows = true;
+        for (int x = 0; x < field.szX; x++)
+        {
+            cols &= field.map[y][x] == sym;
+            rows &= field.map[x][y] == sym;
+        }
+        if (cols || rows) return true;
+    }
+    return false;
+}
+
+
+
 bool checkLine(const Field& field, int y, int x, int vx, int vy, int len) {
     const int endX = x + (len - 1) * vx;
     const int endY = y + (len - 1) * vy;
@@ -200,5 +229,3 @@ void aiMove(Field& field) {
     } while (!isEmptyCell(field, x, y));
     setValue(field.map, y, x, AI);
 }
-
-
