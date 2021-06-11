@@ -110,6 +110,8 @@ void playerMove(Field& field) {
     int y;
     bool hasErrors = false;
     do {
+        std::cin.clear();
+        std::cin.ignore(32767, '\n');
         if (hasErrors) {
             std::cout << "your coordinate was wrong!" << std::endl;
         }
@@ -121,7 +123,7 @@ void playerMove(Field& field) {
         x--;
         y--;
         hasErrors = true;
-    } while (!isValidCell(field, x, y) || !isEmptyCell(field, x, y));
+    } while (!isValidCell(field, x, y) || !isEmptyCell(field, x, y) || (std::cin.fail()));
     setValue(field.map, y, x, HUMAN);
 }
 //!a||!b == !(a&&b)
